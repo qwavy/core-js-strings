@@ -196,8 +196,15 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  if (!str) {
+    return 0;
+  }
+  let count = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    count += str[i].charCodeAt(0);
+  }
+  return count;
 }
 
 /**
@@ -244,19 +251,9 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  let result = '';
-  if (minutes < 10) {
-    result += `0${minutes}`;
-  } else {
-    result += minutes;
-  }
-  result += ':';
-  if (seconds < 10) {
-    result += `0${seconds}`;
-  } else {
-    result += seconds;
-  }
-  return result;
+  const minutesResult = String(minutes).padStart(2, '0');
+  const secondsResult = String(seconds).padStart(2, '0');
+  return minutesResult.concat(':', secondsResult);
 }
 
 /**
@@ -269,8 +266,8 @@ function formatTime(minutes, seconds) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -409,8 +406,16 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let res = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === str[i].toLowerCase()) {
+      res += str[i].toUpperCase();
+    } else {
+      res += str[i].toLowerCase();
+    }
+  }
+  return res;
 }
 
 /**
@@ -426,8 +431,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -455,8 +460,14 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  let res = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== '<' || str[i] !== '>') {
+      res += str[i];
+    }
+  }
+  return res;
 }
 
 /**
