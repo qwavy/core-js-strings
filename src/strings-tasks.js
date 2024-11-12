@@ -37,15 +37,8 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  // if (
-  //   typeof value === 'string' &&
-  //   value.toLowerCase() !== value.toUpperCase()
-  // ) {
-  //   return true;
-  // }
-  // return false;
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -281,8 +274,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -445,8 +438,9 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const str = value.split(' ');
+  return `${str[1]} ${str[2].slice(0, str[2].length - 1)}`;
 }
 
 /**
@@ -461,12 +455,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<a>') => 'a'
  */
 function unbracketTag(str) {
-  let res = '';
-  for (let i = 0; i < str.length; i += 1) {
-    if (str[i] !== '<' || str[i] !== '>') {
-      res += str[i];
-    }
-  }
+  let res = str.replace('<', '');
+  res = res.replace('>', '');
   return res;
 }
 
